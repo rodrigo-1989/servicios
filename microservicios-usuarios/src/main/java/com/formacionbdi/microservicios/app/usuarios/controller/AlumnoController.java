@@ -18,7 +18,7 @@ import com.formacionbdi.microservicios.commons.controllers.CommonController;
 @CrossOrigin( origins ="*" )
 public class AlumnoController  extends CommonController<Alumno, AlumnoService>{
 	
-	@PutMapping("/editar")
+	@PutMapping("/{id}")
 	public ResponseEntity<?>  edita(@RequestBody Alumno alumno, @PathVariable Long id){
 		Optional<Alumno> o = service.findById(id);
 		if (o.isEmpty()) {
