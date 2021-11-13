@@ -2,8 +2,10 @@ package com.formacionbdi.microservicios.app.usuarios.controller;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,8 +18,10 @@ import com.formacionbdi.microservicios.app.usuarios.models.entity.Alumno;
 import com.formacionbdi.microservicios.app.usuarios.services.AlumnoService;
 
 @RestController
+@CrossOrigin( origins ="*" )
 public class AlumnoController {
 
+	@Autowired
 	private AlumnoService service;
 
 	@GetMapping("/listar")
@@ -28,7 +32,7 @@ public class AlumnoController {
 
 	@GetMapping("/listar/{id}")
 	public ResponseEntity<?> ver(@PathVariable Long id) {
-		Optional<Alumno> o = service.findOne(id);
+		Optional<Alumno> o = service.findById(id);
 		if (o.isEmpty()) {
 			return ResponseEntity.notFound().build();
 		}
@@ -43,7 +47,7 @@ public class AlumnoController {
 	
 	@PutMapping("/editar")
 	public ResponseEntity<?>  edita(@RequestBody Alumno alumno, @PathVariable Long id){
-		Optional<Alumno> o = service.findOne(id);
+		Optional<Alumno> o = service.findById(id);
 		if (o.isEmpty()) {
 			return ResponseEntity.notFound().build();
 		}
@@ -57,7 +61,7 @@ public class AlumnoController {
 	
 	@DeleteMapping("/eliminar/{id}")
 	public  ResponseEntity<?>  eliminar(@PathVariable Long id) {
-		service.delete(id);
+		service.deleteById(id);
 		return  ResponseEntity.noContent().build();
 	}
 }

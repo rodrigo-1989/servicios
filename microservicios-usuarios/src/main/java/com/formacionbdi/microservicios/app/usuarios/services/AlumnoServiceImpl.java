@@ -23,7 +23,7 @@ public class AlumnoServiceImpl implements AlumnoService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<Alumno> findOne(Long id) {
+	public Optional<Alumno> findById(Long id) {
 		return repositiry.findById(id);
 	}
 
@@ -35,7 +35,7 @@ public class AlumnoServiceImpl implements AlumnoService {
 
 	@Override
 	@Transactional
-	public void delete(Long id) {
+	public void deleteById(Long id) {
 		repositiry.deleteById(id);
 	}
 
