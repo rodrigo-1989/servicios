@@ -2,48 +2,21 @@ package com.formacionbdi.microservicios.app.usuarios.controller;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.formacionbdi.microservicios.app.usuarios.models.entity.Alumno;
 import com.formacionbdi.microservicios.app.usuarios.services.AlumnoService;
+import com.formacionbdi.microservicios.commons.controllers.CommonController;
 
 @RestController
 @CrossOrigin( origins ="*" )
-public class AlumnoController {
-
-	@Autowired
-	private AlumnoService service;
-
-	@GetMapping("/listar")
-	public ResponseEntity<?> listar() {
-		return ResponseEntity.ok().body(service.findAll());
-
-	}
-
-	@GetMapping("/listar/{id}")
-	public ResponseEntity<?> ver(@PathVariable Long id) {
-		Optional<Alumno> o = service.findById(id);
-		if (o.isEmpty()) {
-			return ResponseEntity.notFound().build();
-		}
-		return ResponseEntity.ok(o.get());
-	}
-	
-	@PostMapping("/crear")
-	public ResponseEntity<?> crear (@RequestBody Alumno alumno){
-		Alumno alumnoDb = service.save(alumno);
-		return ResponseEntity.status(HttpStatus.CREATED).body(alumnoDb);
-	}
+public class AlumnoController  extends CommonController<Alumno, AlumnoService>{
 	
 	@PutMapping("/editar")
 	public ResponseEntity<?>  edita(@RequestBody Alumno alumno, @PathVariable Long id){
@@ -58,10 +31,5 @@ public class AlumnoController {
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(alumnoDb));
 	}
-	
-	@DeleteMapping("/eliminar/{id}")
-	public  ResponseEntity<?>  eliminar(@PathVariable Long id) {
-		service.deleteById(id);
-		return  ResponseEntity.noContent().build();
-	}
+
 }
