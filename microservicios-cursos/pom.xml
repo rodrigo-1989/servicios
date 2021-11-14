@@ -36,6 +36,11 @@
 			<artifactId>microservicios-commons</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.formacionbdi.microservicios.commons.alumnos</groupId>
+			<artifactId>commons-alumnos</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
