@@ -1,6 +1,5 @@
 package com.formacionbdi.microservicios.commons.alumnos.models.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -15,7 +14,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "alumnos")
-public class Alumno implements Serializable{
+public class Alumno {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -89,10 +88,4 @@ public class Alumno implements Serializable{
 		
 		return this.id != null && this.id.equals(a.getId());
 	}
-
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5622430370116315636L;
 }

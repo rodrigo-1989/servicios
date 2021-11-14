@@ -1,6 +1,5 @@
 package com.formacionbdi.microservicios.app.cursos.models.entity;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,7 +20,7 @@ import com.formacionbdi.microservicios.commons.alumnos.models.entity.Alumno;
 
 @Entity
 @Table(name = "cursos")
-public class Curso  implements Serializable{
+public class Curso {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,9 +76,5 @@ public class Curso  implements Serializable{
 	public void removeAlumnos(Alumno alumno) {
 		this.alumnos.add(alumno);
 	}
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -3045625754878162420L;
 	
 }
