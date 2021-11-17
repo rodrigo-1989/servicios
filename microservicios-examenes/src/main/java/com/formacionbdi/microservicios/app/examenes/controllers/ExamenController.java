@@ -17,7 +17,7 @@ import com.formacionbdi.microservicios.commons.controllers.CommonController;
 @RestController
 public class ExamenController extends CommonController<Examen, ExamenService>{
 
-	@PutMapping
+	@PutMapping("/{id}")
 	public ResponseEntity<?> editar(@RequestBody Examen examen,@PathVariable Long id ){
 		Optional <Examen> o = service.findById(id);
 		
