@@ -25,7 +25,7 @@ public class Examen {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long Id;
+	private Long id;
 	
 	private String nombre;
 	
@@ -49,11 +49,11 @@ public class Examen {
 	}
 
 	public Long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(Long id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getNombre() {
@@ -89,4 +89,18 @@ public class Examen {
 		this.preguntas.remove(pregunta) ;
 		pregunta.setExamen(null);
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Examen)){
+			return false;
+		}
+		Examen a = (Examen)obj;
+		return this.id != null && this.getId().equals(a.getId());
+	}
+	
+	
 }
