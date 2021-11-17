@@ -1,4 +1,4 @@
-package com.formacionbdi.microservicios.app.examenes.models.entity;
+package com.formacionbdi.microservicios.commons.examenes;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
