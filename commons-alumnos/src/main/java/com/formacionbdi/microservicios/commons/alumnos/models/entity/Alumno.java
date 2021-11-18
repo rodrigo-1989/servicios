@@ -7,12 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "alumnos")
@@ -33,6 +36,13 @@ public class Alumno {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createAt;
 	
+	@Lob
+	@JsonIgnore
+	private byte[] foto;
+	
+	private Integer getFotoHashCode() {
+		return (this.foto != null) ? this.foto.hashCode():null;
+	}
 	@PrePersist
 	public void prePersist() {
 		createAt = new Date();
@@ -78,7 +88,14 @@ public class Alumno {
 		this.createAt = createAt;
 	}
 	
-	
+	public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		
