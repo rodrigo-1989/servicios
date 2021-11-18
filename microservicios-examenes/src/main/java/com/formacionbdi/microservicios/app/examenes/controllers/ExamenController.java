@@ -43,7 +43,7 @@ public class ExamenController extends CommonController<Examen, ExamenService>{
 		return ResponseEntity.ok(service.findByNombre(term));
 	}
 	
-	@GetMapping("/aignaturas")
+	@GetMapping("/asignaturas")
 	public ResponseEntity<?> listarAsignaturas(){
 		return ResponseEntity.ok(service.findAllAsignaturas());
 	}
