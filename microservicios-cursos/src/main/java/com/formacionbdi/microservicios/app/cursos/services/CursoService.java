@@ -6,4 +6,6 @@ import com.formacionbdi.microservicios.commons.service.CommonService;
 public interface CursoService extends CommonService<Curso> {
 
 	public Curso findByAlumnoId(Long id);
+	
+	public Iterable<Long> obtenerExamenesIdConRespuetaAlumno( Long alumnoId);
 }

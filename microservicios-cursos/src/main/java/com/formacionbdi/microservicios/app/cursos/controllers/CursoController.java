@@ -2,6 +2,7 @@ package com.formacionbdi.microservicios.app.cursos.controllers;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -69,6 +70,17 @@ public class CursoController extends CommonController<Curso, CursoService>{
 	@GetMapping("alumno/{id}")
 	public ResponseEntity<?> buscarPorAlumnoId(@PathVariable Long id){
 		Curso curso = service.findByAlumnoId(id);
+		if(curso != null ) {
+			List<Long> examenesIds = (List<Long>) service.obtenerExamenesIdConRespuetaAlumno(id);
+			
+			List<Examen> examenes = curso.getExamenes().stream().map(examen -> {
+				if(examenesIds.contains(examen.getId())) {
+					examen.setRespondido(true);
+				}
+				return examen;
+			}).collect(Collectors.toList());
+			curso.setExamenes(examenes);
+		}
 		return ResponseEntity.ok(curso);
 	}
 	
